@@ -1,9 +1,5 @@
 package Produtos;
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 public class Produtos implements IProdutos {
 
 	private int id;
@@ -55,18 +51,8 @@ public class Produtos implements IProdutos {
 
 	@Override
 	public String toString() {
-<<<<<<< Updated upstream
-		return "Id: " + id + ", Nome=" + nome + "\nDescricao: " + descricao + ", Valor Unitario: " + valorUnitario
-				+ ", Quantidade: " + quantidade + "]";
-	}
-	
-	
-	
-		
-=======
 		return "id: " + id + "\nnome: " + nome + "\ndescricao: " + descricao + "\nvalorUnitario: " + valorUnitario
 				+ "\nquantidade: " + quantidade;
 	}
->>>>>>> Stashed changes
 
 }
