@@ -1,6 +1,5 @@
 package Produtos;
 
-import java.text.DecimalFormat;
 
 public class Produtos implements IProdutos {
 	
@@ -55,6 +54,15 @@ public class Produtos implements IProdutos {
 		this.quantidade -= quantidade;
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Id: " + id + ", Nome=" + nome + "\nDescricao: " + descricao + ", Valor Unitario: " + valorUnitario
+				+ ", Quantidade: " + quantidade + "]";
+	}
+	
+	
+	
 		
 
 }

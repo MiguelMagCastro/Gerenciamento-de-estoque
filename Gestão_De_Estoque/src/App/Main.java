@@ -172,13 +172,18 @@ public class Main {
 	private static void visualizarProduto() {
 		int id;
 		do {
-			System.out.print("Digite o Id do produto que deseja remover: ");
+			System.out.print("Digite o Id do produto que deseja visualizar: ");
 			id = validaEscolha();
 			if (!estoque.verificaExistencia(id)) {
 				System.out.println("\nProduto não encontrado!\n");
 				break;
 			}
 		} while (!estoque.verificaExistencia(id));
+		
+		if(estoque.verificaExistencia(id)) {
+			String produto = estoque.consultaProduto(id);
+			System.out.println(produto);
+		}
 		
 
 	}

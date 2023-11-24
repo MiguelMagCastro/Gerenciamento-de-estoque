@@ -84,10 +84,10 @@ public class Estoque {
 		saidas.add("Foram vendidos: "+ quantidade + "  unidades de " + nome + ", no dia: " + data );
 	}
 	
-	public Produtos consultaProduto(int id) {
+	public String consultaProduto(int id) {
 		for(Produtos prod:produtosEmEstoque) {
 			if(prod.getId() == id) {
-				return prod;
+				return prod.toString();
 			}
 		}
 		return null;
