@@ -56,7 +56,7 @@ public class Estoque {
 				nome = prod.getNome();
 			}
 		}
-		entradas.add("Foi adicionado(a) " + quantidade + " unidades de " + nome + ", no dia: " + data);
+		entradas.add("Foram adicionadas " + quantidade + " unidades de " + nome + ", no dia: " + data + "\n");
 	}
 
 	public boolean saidaDeProdutos(int id, int quantidade) {
@@ -81,7 +81,7 @@ public class Estoque {
 				nome = prod.getNome();
 			}
 		}
-		saidas.add("Foram vendidos: "+ quantidade + "  unidades de " + nome + ", no dia: " + data );
+		saidas.add("Foram vendidas "+ quantidade + " unidades de " + nome + ", no dia: " + data + "\n");
 	}
 	
 	public String consultaProduto(int id) {
@@ -94,16 +94,29 @@ public class Estoque {
 	}
 	
 	private int geraId() {
-		int newId = 0;
+		int maiorID = 0;
 		if (produtosEmEstoque.isEmpty()) {
 			return 1;
-		}
+		}else {
 		for (Produtos a : produtosEmEstoque) {
-			if (a.getId() > newId) {
-				newId = a.getId();
+			if (a.getId() > maiorID) {
+				maiorID = a.getId();
 			}
 		}
-		return newId;
+		return (maiorID + 1);
+	}
+	}
+	
+	public List<String> registroDeEntrada() {
+		return this.entradas;
+	}
+	
+	public List<String> registroDeSaida(){
+		return this.saidas;
 	}
 
+	public List<Produtos> produtosEmEstoque(){
+		return produtosEmEstoque;
+	}
+	
 }
