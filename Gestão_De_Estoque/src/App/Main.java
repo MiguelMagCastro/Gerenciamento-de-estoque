@@ -26,7 +26,7 @@ public class Main {
 		System.out.println("|==========================|");
 		System.out.printf("|%-26s|\n", "1 -- Menu Produto");
 		System.out.printf("|%-26s|\n", "2 -- Menu Atividades");
-		System.out.printf("|%-26s|\n", "3 -- Menu ...");
+		System.out.printf("|%-26s|\n", "3 -- Menu Usuarios");
 		System.out.printf("|%-26s|\n", "0 -- Sair ");
 		System.out.printf("|%-26s|\n", " ");
 		System.out.println("|==========================|");
@@ -201,8 +201,8 @@ public class Main {
 		System.out.println("|==========================|");
 		System.out.println("|      Menu Atividades     |");
 		System.out.println("|==========================|");
-		System.out.printf("|%-26s|\n", "1 -- Registro entradas");
-		System.out.printf("|%-26s|\n", "2 -- Registro de Saidas");
+		System.out.printf("|%-26s|\n", "1 -- Registro Abastecimento");
+		System.out.printf("|%-26s|\n", "2 -- Registro de Vendas");
 		System.out.printf("|%-26s|\n", "3 -- Ver Estoque Completo");
 		System.out.printf("|%-26s|\n", "0 -- Voltar ");
 		System.out.printf("|%-26s|\n", " ");
@@ -212,10 +212,10 @@ public class Main {
 	private static void escolhaMenuAtividades(int escolha) {
 		switch (escolha) {
 		case 1:
-			registroEntradas();
+			registroAbastecimento();
 			break;
 		case 2:
-			registroSaidas();
+			registroVendas();
 			break;
 		case 3:
 			mostraEstoqueCompleto();
@@ -230,9 +230,9 @@ public class Main {
 		}
 	}
 
-	private static void registroEntradas() {
+	private static void registroAbastecimento() {
 		List<String> entrada = estoque.getRegistroDeEntrada();
-		System.out.println("Ações registradas: " + entrada.size() + "\n");
+		System.out.println("Abastecimentos registrados: " + entrada.size() + "\n");
 		if(entrada.isEmpty()) {
 			System.out.println("Registro vazio.");
 		}else {
@@ -243,7 +243,7 @@ public class Main {
 		
 	}
 
-	private static void registroSaidas() {
+	private static void registroVendas() {
 		List<String> saida = estoque.getRegistroDeSaida();
 		System.out.println("Ações registradas: " + saida.size() + "\n");
 		if(saida.isEmpty()) {
@@ -271,4 +271,17 @@ public class Main {
 		
 	}
 
+	private static void menuUsuarios() {
+		System.out.println("|==========================|");
+		System.out.println("|        Menu Usuários     |");
+		System.out.println("|==========================|");
+		System.out.printf("|%-26s|\n", "1 -- Adicionar usuário");
+		System.out.printf("|%-26s|\n", "2 -- Editar usuário");
+		System.out.printf("|%-26s|\n", "3 -- Listar usuários");
+		System.out.printf("|%-26s|\n", "4 -- Realizar Compra");
+		System.out.printf("|%-26s|\n", "0 -- Voltar ");
+		System.out.printf("|%-26s|\n", " ");
+		System.out.println("|==========================|");
+	}
+	
 }

@@ -109,8 +109,8 @@ public class Estoque {
 	public boolean saidaDeProdutos(int id, int quantidade) {
 		for (Produtos prod : produtosEmEstoque) {
 			if (id == prod.getId()) {
-				if (prod.getQuantidade() - quantidade >= 0) {
-					prod.saidaDeProdutos(quantidade);
+				prod.saidaDeProdutos(quantidade);
+				if (prod.saidaDeProdutos(quantidade)) {
 					registroDeSaida(id, quantidade);
 					return true;
 				}

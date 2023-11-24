@@ -45,8 +45,12 @@ public class Produtos implements IProdutos {
 	}
 
 	@Override
-	public void saidaDeProdutos(int quantidade) {
-		this.quantidade -= quantidade;
+	public boolean saidaDeProdutos(int quantidade) {
+		if (this.quantidade - quantidade >= 0) {
+			this.quantidade -= quantidade;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
