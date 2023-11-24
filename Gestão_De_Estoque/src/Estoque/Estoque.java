@@ -51,7 +51,7 @@ public class Estoque {
 	 * @param id:         Id do produto em questão;
 	 * @param quantidade: Quantidade a ser adicionada ao produto em questão;
 	 * @return<b>true</b> caso consiga incrementar ao produto<br>
-	 *         <b>false</b>caso não consiga incrementar ao produto.
+	 *                    <b>false</b>caso não consiga incrementar ao produto.
 	 */
 	public boolean adicaoDeProdutos(int id, int quantidade) {
 		for (Produtos prod : produtosEmEstoque) {
@@ -64,9 +64,11 @@ public class Estoque {
 		return false;
 	}
 
-	
 	/**
-	 * <p>Verifica a existencia de um produto com base no Id informado</p>
+	 * <p>
+	 * Verifica a existencia de um produto com base no Id informado
+	 * </p>
+	 * 
 	 * @param id: Id a ser buscado;
 	 * @return <b>true</b> caso consiga encontrar o produto<br>
 	 *         <b>false</b>caso não consiga encontrar o produto.
@@ -102,7 +104,7 @@ public class Estoque {
 	 * @param id:         Id do produto em questão;
 	 * @param quantidade: Quantidade a ser removida ao produto em questão;
 	 * @return<b>true</b> caso consiga remover a quantidade<br>
-	 *         <b>false</b>caso não consiga remover a quantidade.
+	 *                    <b>false</b>caso não consiga remover a quantidade.
 	 */
 	public boolean saidaDeProdutos(int id, int quantidade) {
 		for (Produtos prod : produtosEmEstoque) {
@@ -130,10 +132,13 @@ public class Estoque {
 	}
 
 	/**
-	 * <p>Busca um produto com base no id</p>
+	 * <p>
+	 * Busca um produto com base no id
+	 * </p>
+	 * 
 	 * @param id: id do produto desejado;
 	 * @return Uma String contendo as informações do produto.<br>
-	 * <b>null</b> caso não encontre o produto.
+	 *         <b>null</b> caso não encontre o produto.
 	 */
 	public String consultaProduto(int id) {
 		for (Produtos prod : produtosEmEstoque) {
@@ -158,15 +163,15 @@ public class Estoque {
 		}
 	}
 
-	public List<String> registroDeEntrada() {
+	public List<String> getRegistroDeEntrada() {
 		return this.entradas;
 	}
 
-	public List<String> registroDeSaida() {
+	public List<String> getRegistroDeSaida() {
 		return this.saidas;
 	}
 
-	public List<Produtos> produtosEmEstoque() {
+	public List<Produtos> getProdutosEmEstoque() {
 		return produtosEmEstoque;
 	}
 

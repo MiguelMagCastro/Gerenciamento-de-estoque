@@ -1,4 +1,4 @@
-package APP;
+package App;
 
 import java.util.List;
 import java.util.Scanner;
@@ -82,7 +82,6 @@ public class Main {
 		System.out.println("|==========================|");
 		System.out.printf("|%-26s|\n", "1 -- Cadastrar Produto");
 		System.out.printf("|%-26s|\n", "2 -- Adicionar Produto");
-		System.out.printf("|%-26s|\n", "3 -- Remover Produto");
 		System.out.printf("|%-26s|\n", "3 -- Remover Produto");
 		System.out.printf("|%-26s|\n", "4 -- Visualizar Produto");
 		System.out.printf("|%-26s|\n", "0 -- Voltar ");
@@ -180,11 +179,8 @@ public class Main {
 	private static void visualizarProduto() {
 		int id;
 		do {
-<<<<<<< Updated upstream
 			System.out.print("Digite o Id do produto que deseja visualizar: ");
-=======
-			System.out.print("Digite o Id do produto que deseja Visualizar: ");
->>>>>>> Stashed changes
+
 			id = validaEscolha();
 			if (!estoque.verificaExistencia(id)) {
 				System.out.println("\nProduto não encontrado!\n");
@@ -193,15 +189,11 @@ public class Main {
 			String produto = estoque.consultaProduto(id);
 			System.out.println("\n" + produto);
 		} while (!estoque.verificaExistencia(id));
-<<<<<<< Updated upstream
-		
-		if(estoque.verificaExistencia(id)) {
+
+		if (estoque.verificaExistencia(id)) {
 			String produto = estoque.consultaProduto(id);
 			System.out.println(produto);
 		}
-		
-=======
->>>>>>> Stashed changes
 
 	}
 
@@ -216,7 +208,7 @@ public class Main {
 		System.out.printf("|%-26s|\n", " ");
 		System.out.println("|==========================|");
 	}
-	
+
 	private static void escolhaMenuAtividades(int escolha) {
 		switch (escolha) {
 		case 1:
@@ -237,24 +229,46 @@ public class Main {
 
 		}
 	}
-	
+
 	private static void registroEntradas() {
-		List<String> entrada = estoque.registroDeEntrada();
-		
-		for(String a:entrada) {
-			System.out.println(a);
+		List<String> entrada = estoque.getRegistroDeEntrada();
+		System.out.println("Ações registradas: " + entrada.size() + "\n");
+		if(entrada.isEmpty()) {
+			System.out.println("Registro vazio.");
+		}else {
+			for (String a : entrada) {
+				System.out.println(a);
+			}
 		}
+		
 	}
-	
+
 	private static void registroSaidas() {
-		List<String> entrada = estoque.registroDeSaida();
-		for(String a:entrada) {
+		List<String> saida = estoque.getRegistroDeSaida();
+		System.out.println("Ações registradas: " + saida.size() + "\n");
+		if(saida.isEmpty()) {
+			System.out.println("Registro vazio.");
+		}else {
+		for (String a : saida) {
 			System.out.println(a);
 		}
+		}
 	}
-	
+
 	private static void mostraEstoqueCompleto() {
+		List<Produtos> estoqueTodo = estoque.getProdutosEmEstoque();
+		System.out.println("Total de itens no Estoque: " + estoqueTodo.size() + "\n");
+		if(estoqueTodo.isEmpty()) {
+			System.out.println("Estoque vazio!");
+		}else {
+			for(Produtos a:estoqueTodo) {
+				a.toString();
+				
+				System.out.println(a);
+				System.out.println("\n");
+			}
+		}
 		
 	}
-	
+
 }
