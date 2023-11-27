@@ -50,14 +50,16 @@ public class Estoque {
 	 * 
 	 * @param id:         Id do produto em questão;
 	 * @param quantidade: Quantidade a ser adicionada ao produto em questão;
+	 * @param userId:     Id do usuário relacionado;
+	 * @param userName:   Nome do usuário relacionado;
 	 * @return<b>true</b> caso consiga incrementar ao produto<br>
 	 *                    <b>false</b>caso não consiga incrementar ao produto.
 	 */
-	public boolean adicaoDeProdutos(int id, int quantidade) {
+	public boolean adicaoDeProdutos(int id, int quantidade, int userId, String userName) {
 		for (Produtos prod : produtosEmEstoque) {
 			if (id == prod.getId()) {
 				prod.adicaoDeProdutos(quantidade);
-				registroDeAdicao(id, quantidade);
+				registroDeAdicao(id, quantidade, userId, userName);
 				return true;
 			}
 		}
@@ -84,7 +86,7 @@ public class Estoque {
 		return false;
 	}
 
-	private void registroDeAdicao(int id, int quantidade) {
+	private void registroDeAdicao(int id, int quantidade, int userId, String userName) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data = LocalDate.now().format(formatter);
 		String nome = null;
@@ -93,7 +95,8 @@ public class Estoque {
 				nome = prod.getNome();
 			}
 		}
-		entradas.add("Foram adicionadas " + quantidade + " unidades de " + nome + ", no dia: " + data + "\n");
+		entradas.add("Foram adicionadas " + quantidade + " unidades de " + nome + ", no dia: " + data
+				+ "\nPelo forncedor: " + userName + ", id: " + userId);
 	}
 
 	/**
@@ -103,23 +106,23 @@ public class Estoque {
 	 * 
 	 * @param id:         Id do produto em questão;
 	 * @param quantidade: Quantidade a ser removida ao produto em questão;
+	 * @param userId:     Id do usuário relacionado;
+	 * @param userName:   Nome do usuário relacionado;
 	 * @return<b>true</b> caso consiga remover a quantidade<br>
 	 *                    <b>false</b>caso não consiga remover a quantidade.
 	 */
-	public boolean saidaDeProdutos(int id, int quantidade) {
+	public boolean saidaDeProdutos(int id, int quantidade, int userId, String userName) {
 		for (Produtos prod : produtosEmEstoque) {
 			if (id == prod.getId()) {
 				prod.saidaDeProdutos(quantidade);
-				if (prod.saidaDeProdutos(quantidade)) {
-					registroDeSaida(id, quantidade);
-					return true;
-				}
+				registroDeSaida(id, quantidade, userId, userName);
+				return true;
 			}
 		}
 		return false;
 	}
 
-	private void registroDeSaida(int id, int quantidade) {
+	private void registroDeSaida(int id, int quantidade, int userId, String userName) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String data = LocalDate.now().format(formatter);
 		String nome = null;
@@ -128,7 +131,8 @@ public class Estoque {
 				nome = prod.getNome();
 			}
 		}
-		saidas.add("Foram vendidas " + quantidade + " unidades de " + nome + ", no dia: " + data + "\n");
+		saidas.add("Foram vendidas " + quantidade + " unidades de " + nome + ", no dia: " + data + "\nPara o cliente: "
+				+ userName + ", id: " + userId);
 	}
 
 	/**
@@ -175,4 +179,35 @@ public class Estoque {
 		return produtosEmEstoque;
 	}
 
+	public boolean verificaQuantidadeRemocao(int quantidade, int id) {
+		if (!produtosEmEstoque.isEmpty()) {
+			for (Produtos prod : produtosEmEstoque) {
+				if (id == prod.getId()) {
+					if (prod.getQuantidade() - quantidade >= 0) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public String getNameById(int id){
+		for(Produtos a:produtosEmEstoque) {
+			if(id == a.getId()) {
+				return a.getNome();
+			}
+		}
+		return null;
+	}
+	
+	public Double calculaValorDaVenda(int quantidade, int id) {
+		for(Produtos a : produtosEmEstoque) {
+			if(a.getId() == id) {
+				return (Double) a.getValorUnitario() * quantidade;
+			}
+		}
+		return 0.00;
+	}
+	
 }

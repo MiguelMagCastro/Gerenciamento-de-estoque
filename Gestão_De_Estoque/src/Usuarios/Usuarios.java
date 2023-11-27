@@ -1,38 +1,56 @@
 package Usuarios;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Usuarios implements IUsuario {
 
 	private int userId;
 	private String userName;
-	private LocalDate nascimento;
-	private List<String> compras;
+	private String userType;
+	
+	private List<String> list;
 
-	public Usuarios(int userId1, String userName1, LocalDate nascimento1) {
+	protected Usuarios(int userId1, String userName1, List<String> list1 , String userType1 ) {
 		this.userId = userId1;
 		this.userName = userName1;
-		this.nascimento = nascimento1;
-		this.compras = new ArrayList<>();
+		if(list1 == null) {
+			this.list = new ArrayList<>();
+		}else {
+			this.list = list1;
+		}
+		this.userType = userType1;
 	}
 
-	@Override
+	
 	public boolean realizaCompra(String prodNome, Double prodValor , int quantidade) {
-		this.compras.add(quantidade + "X -- " + prodNome + "Valor Unitario: " + prodValor + "TOTAL: R$" + valorCompra(quantidade, prodValor) );
+		this.list.add(null);
 		return false;
 	}
-
-	@Override
-	public void editaUsuario(String nome, LocalDate nascimento) {
+	
+	public boolean registro(String prodNome, int prodId, int quantidade, Double totalCompra) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String data = LocalDate.now().format(formatter);
+		if(this.userType == "Cliente") {
+			this.list.add("Comprou " + quantidade + " unidades do produto id:" + prodId + ", Nome: " + prodNome + ", no dia " + data + " Total da compra: R$" + totalCompra );
+		}else {
+			this.list.add("Adicionou " + quantidade + " unidades do produto id:" + prodId + ", Nome: " + prodNome + ", no dia " + data);
+		}
 		
-
+		if(!this.list.isEmpty()) {
+			for(String a: list) {
+				if(a.contains(quantidade + " unidades do produto id: " + prodId + ", Nome: " + prodNome + ", no dia " + data));
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	private Double valorCompra(int quantidade , Double valorUnitario) {
-		return (Double) valorUnitario * quantidade;
-	}
+
+
 
 	//Start Getters
 	public int getUserId() {
@@ -42,9 +60,27 @@ public class Usuarios implements IUsuario {
 	public String getUserName() {
 		return userName;
 	}
-
-	public LocalDate getNascimento() {
-		return nascimento;
+	
+	public String getUserType() {
+		return this.userType;
+	}
+	
+	public List<String> getUserList() {
+		return this.list;
 	}
 	//End Getters
+
+	public void setUserName(String nome) {
+		this.userName = nome;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Id: " + userId + "\nNome: " + userName + " \nTipo: " + userType;
+	}
+	
+	
+	
+	
 }
