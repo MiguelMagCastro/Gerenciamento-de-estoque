@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Usuarios implements IUsuario {
+public class Usuarios {
 
 	private int userId;
 	private String userName;
